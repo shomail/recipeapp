@@ -1,6 +1,7 @@
 import { elements, renderLoader, clearLoader } from './views/base';
 import Search from './models/Search';
 import Recipe from './models/Recipe';
+import List from './models/List';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
 
@@ -39,7 +40,6 @@ elements.searchForm.addEventListener('submit', e => {
   controlSearch();
 });
 
-
 elements.searchResPages.addEventListener('click', e => {
   const btn = e.target.closest('.btn-inline');
   if (btn) {
@@ -59,7 +59,7 @@ const controlRecipe = async () => {
     renderLoader(elements.recipe);
 
     //highlight selected item
-    if(state.search) searchView.highlightSelected(id);
+    if (state.search) searchView.highlightSelected(id);
 
     //create new recipe object
     state.recipe = new Recipe(id);
@@ -89,13 +89,13 @@ const controlRecipe = async () => {
 
 //handling recipe button clicks
 elements.recipe.addEventListener('click', e => {
-  if(e.target.matches('.btn-decrease, .btn-decrease *')) {
-    if(state.recipe.servings > 1) {
+  if (e.target.matches('.btn-decrease, .btn-decrease *')) {
+    if (state.recipe.servings > 1) {
       state.recipe.updateServings('dec');
       recipeView.updateServingsIngredients(state.recipe);
     }
-  } else if(e.target.matches('.btn-increase, .btn-increase *')) {
-    state.recipe.updateServings('inc')
+  } else if (e.target.matches('.btn-increase, .btn-increase *')) {
+    state.recipe.updateServings('inc');
     recipeView.updateServingsIngredients(state.recipe);
   }
-})
+});
