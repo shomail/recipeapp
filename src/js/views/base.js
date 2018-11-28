@@ -5,11 +5,12 @@ export const elements = {
   searchList: document.querySelector('.results__list'),
   searchResPages: document.querySelector('.results__pages'),
   recipe: document.querySelector('.recipe'),
-}
+  shopping: document.querySelector('.shopping__list')
+};
 
 export const elementStrings = {
   loader: 'loader'
-}
+};
 
 export const renderLoader = parent => {
   const loader = `
@@ -20,11 +21,11 @@ export const renderLoader = parent => {
     </div>
   `;
   parent.insertAdjacentHTML('afterbegin', loader);
-}
+};
 
 export const clearLoader = () => {
   const loader = document.querySelector(`.${elementStrings.loader}`);
-  if(loader) {
+  if (loader) {
     loader.parentElement.removeChild(loader);
   }
-}
+};

@@ -1,4 +1,4 @@
-import { elements } from './base'
+import { elements } from './base';
 import { Fraction } from 'fractional';
 
 const createIngredient = ingredient => `
@@ -15,14 +15,17 @@ const createIngredient = ingredient => `
 `;
 
 const formatCount = count => {
-  if( count ) {
+  if (count) {
     // count = 2.5 --- 2 1/2
     // count = 0.5 --- 1/2
-    const [int, dec] = count.toString().split('.').map(el => parseInt(el, 10));
+    const [int, dec] = count
+      .toString()
+      .split('.')
+      .map(el => parseInt(el, 10));
 
-    if(!dec) return count;
+    if (!dec) return count;
 
-    if(int === 0) {
+    if (int === 0) {
       const fr = new Fraction(count);
 
       return `${fr.numerator}/${fr.denominator}`;
@@ -31,17 +34,13 @@ const formatCount = count => {
 
       return `${int} ${fr.numerator}/${fr.denominator}`;
     }
-
-
-
-
   }
   return '?';
-}
+};
 
 export const clearRecipe = () => {
   elements.recipe.innerHTML = '';
-}
+};
 
 export const renderRecipe = recipe => {
   const markup = `
@@ -118,7 +117,7 @@ export const renderRecipe = recipe => {
   `;
 
   elements.recipe.insertAdjacentHTML('afterbegin', markup);
-}
+};
 
 export const updateServingsIngredients = recipe => {
   document.querySelector('.recipe__info-data--people').textContent = recipe.servings;
@@ -127,5 +126,5 @@ export const updateServingsIngredients = recipe => {
 
   countElements.forEach((el, idx) => {
     el.textContent = formatCount(recipe.ingredients[idx].count);
-  })
-}
+  });
+};
